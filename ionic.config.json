@@ -1,0 +1,8 @@
+{
+  "name": "login-clone",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "3fe0ce79"
+}
