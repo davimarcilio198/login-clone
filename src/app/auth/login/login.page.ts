@@ -63,8 +63,14 @@ export class LoginPage implements OnInit {
     try {
       this.isFetching = true;
 
+      const userInDatabase = {
+        document: '11111111111',
+        password: '12345',
+      };
+
       const isRememberMe = this.formSignIn.get('isRememberMe')?.value;
       const document = this.formSignIn.get('document')?.value;
+      const password = this.formSignIn.get('password')?.value;
 
       if (isRememberMe) {
         localStorage.setItem(
@@ -75,8 +81,17 @@ export class LoginPage implements OnInit {
         );
       }
 
-      await new Promise((resolve) => {
-        setTimeout(resolve, 2000);
+      await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (
+            document === userInDatabase.document &&
+            password === userInDatabase.password
+          ) {
+            resolve('resolve');
+          } else {
+            reject('Usuário não autenticado');
+          }
+        }, 2000);
       });
 
       const toast = await this.toastController.create({
