@@ -6,26 +6,46 @@
   </ion-header>
   <div class="px-5">
     <div class="w-full flex justify-center items-center">
-      <ion-icon src="../../../assets/icon/logo-unimed-nova.svg" class="w-40 h-40 mt-10"></ion-icon>
+      <ion-icon
+        src="../../../assets/icon/logo-unimed-nova.svg"
+        class="w-40 h-40 mt-10"
+      ></ion-icon>
     </div>
     <form [formGroup]="formSignIn" class="flex flex-col gap-2">
       <div class="flex flex-col gap-1">
         <ion-label class="font-bold text-sm">CPF</ion-label>
-        <ion-input errorText="Insira um CPF Válido"
-          class="bg-slate-100 input-style border-none rounded-t-lg rounded-b-sm" formControlName="document" type="text"
-          inputmode="numeric" placeholder="000.000.000-00"></ion-input>
-
+        <ion-input
+          errorText="Insira um CPF Válido"
+          class="bg-slate-100 input-style border-none rounded-t-lg rounded-b-sm"
+          formControlName="document"
+          type="text"
+          inputmode="numeric"
+          placeholder="000.000.000-00"
+        ></ion-input>
       </div>
       <div class="flex flex-col gap-1">
         <ion-label class="font-bold text-sm">Senha</ion-label>
 
-        <ion-input errorText="A Senha deve conter no mínimo 5 caracteres"
-          class="bg-slate-100 input-style border-none rounded-t-lg rounded-b-sm" formControlName="password"
-          [type]="isShowPassword ? 'text' : 'password'" [clearOnEdit]="false" placeholder="************">
-
-          <ion-button (click)="onChangeShowPassword()" fill="clear" slot="end" aria-label="Show/hide">
-            <ion-icon slot="icon-only" class="fill-slate-500" [name]="isShowPassword ? 'eye' : 'eye-off'"
-              aria-hidden="true"></ion-icon>
+        <ion-input
+          errorText="A Senha deve conter no mínimo 5 caracteres"
+          class="bg-slate-100 input-style border-none rounded-t-lg rounded-b-sm"
+          formControlName="password"
+          [type]="isShowPassword ? 'text' : 'password'"
+          [clearOnEdit]="false"
+          placeholder="************"
+        >
+          <ion-button
+            (click)="onChangeShowPassword()"
+            fill="clear"
+            slot="end"
+            aria-label="Show/hide"
+          >
+            <ion-icon
+              slot="icon-only"
+              class="fill-slate-500"
+              [name]="isShowPassword ? 'eye' : 'eye-off'"
+              aria-hidden="true"
+            ></ion-icon>
           </ion-button>
         </ion-input>
 
@@ -43,8 +63,12 @@
         <p class="text-sm font-semibold">Esqueci minha senha</p>
         <p class="text-sm font-semibold">Registrar-se</p>
       </div>
-      <ion-button type="button" (click)="onSignIn()" [disabled]="formSignIn.invalid"
-        class="custom-button rounded-2xl w-full mt-4">
+      <ion-button
+        type="button"
+        (click)="onSignIn()"
+        [disabled]="formSignIn.invalid"
+        class="custom-button rounded-2xl w-full mt-4"
+      >
         <span class="py-2 font-semibold" *ngIf="!isFetching">Entrar</span>
         <ion-spinner *ngIf="isFetching" name="crescent"></ion-spinner>
       </ion-button>
