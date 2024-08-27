@@ -1,10 +1,26 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Em Construção</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <!-- <ion-menu-toggle> -->
+    <!-- <ion-button>Click to close the menu</ion-button> -->
+    <!-- </ion-menu-toggle> -->
+    <h1>Menu em construção</h1>
+  </ion-content>
+</ion-menu>
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">home</ion-title>
     </ion-toolbar>
   </ion-header>
-  <div class="bg-green-700 min-h-52 flex flex-col justify-between">
+  <div
+    id="main-content"
+    class="bg-green-700 min-h-52 flex flex-col justify-between"
+  >
     <div class="flex justify-between items-center px-5">
       <ion-button size="large" fill="clear" color="light" shape="round">
         <ion-icon
@@ -13,9 +29,11 @@
           name="person-circle-outline"
         ></ion-icon>
       </ion-button>
-      <ion-button fill="clear" color="light" shape="round">
-        <ion-icon slot="icon-only" class="w-8 h-8" name="menu"></ion-icon>
-      </ion-button>
+      <ion-menu-toggle>
+        <ion-button fill="clear" color="light" shape="round">
+          <ion-icon slot="icon-only" class="w-8 h-8" name="menu"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
     </div>
     <div class="p-5">
       <h1 class="text-white text-base">
