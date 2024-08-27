@@ -29,3 +29,10 @@ $ ionic serve
 ```
 
 - 5 - Seu terminal vai exibir a URL da aplicação rodando, acesse-a
+
+- 6 - Para testes utilize o CPF e senha padrão:
+
+```
+DOCUMENT="11111111111"
+PASSWORD="12345"
+```
