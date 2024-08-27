@@ -7,11 +7,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 interface FormGroupProps {
   document: FormControl<string | null>;
   password: FormControl<string | null>;
+  isRememberMe: FormControl<boolean | null>;
 }
 
 @Component({
@@ -27,7 +28,7 @@ export class LoginPage implements OnInit {
   submitted = false;
 
   constructor(
-    private alertController: AlertController,
+    private toastController: ToastController,
     private router: Router
   ) {}
 
@@ -38,8 +39,12 @@ export class LoginPage implements OnInit {
   public isFetching: boolean = false;
 
   ngOnInit() {
+    const documentFromLocalStorage: { document: string } = JSON.parse(
+      localStorage.getItem('@login-clone:1.0.0/remember-me') ?? '{}'
+    );
+
     this.formSignIn = new FormGroup({
-      document: new FormControl('', [
+      document: new FormControl(documentFromLocalStorage.document ?? '', [
         Validators.required,
         Validators.minLength(11),
         Validators.maxLength(11),
@@ -50,29 +55,49 @@ export class LoginPage implements OnInit {
         Validators.minLength(5),
         Validators.maxLength(255),
       ]),
+      isRememberMe: new FormControl(!!documentFromLocalStorage.document),
     });
   }
 
   async onSignIn() {
     try {
       this.isFetching = true;
+
+      const isRememberMe = this.formSignIn.get('isRememberMe')?.value;
+      const document = this.formSignIn.get('document')?.value;
+
+      if (isRememberMe) {
+        localStorage.setItem(
+          '@login-clone:1.0.0/remember-me',
+          JSON.stringify({
+            document,
+          })
+        );
+      }
+
       await new Promise((resolve) => {
         setTimeout(resolve, 2000);
       });
-      const alert = await this.alertController.create({
+
+      const toast = await this.toastController.create({
         message: 'Login realizado',
-        cssClass: 'alert-success',
+        color: 'success',
+        position: 'bottom',
+        duration: 1500,
       });
 
-      await alert.present();
+      await toast.present();
       await this.router.navigate(['tabs']);
     } catch (error) {
       console.error(error);
 
-      const alert = await this.alertController.create({
+      const toast = await this.toastController.create({
         message: String(error),
+        color: 'danger',
+        position: 'bottom',
+        duration: 1500,
       });
-      await alert.present();
+      await toast.present();
     } finally {
       this.isFetching = false;
     }

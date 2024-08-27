@@ -1,9 +1,8 @@
-@import 'tailwindcss/base';
+@import "tailwindcss/base";
 
-@import 'tailwindcss/components';
+@import "tailwindcss/components";
 
-@import 'tailwindcss/utilities';
-
+@import "tailwindcss/utilities";
 
 /*
  * App Global CSS
@@ -45,8 +44,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.alert-success .alert-wrapper {
-    background-color: greenyellow;
-    color: black;
-}
