@@ -87,7 +87,7 @@ export class LoginPage implements OnInit {
       });
 
       await toast.present();
-      await this.router.navigate(['tabs']);
+      await this.router.navigate(['home']);
     } catch (error) {
       console.error(error);
 

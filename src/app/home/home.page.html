@@ -1,0 +1,57 @@
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">home</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="bg-green-700 min-h-52 flex flex-col justify-between">
+    <div class="flex justify-between items-center px-5">
+      <ion-button size="large" fill="clear" color="light" shape="round">
+        <ion-icon
+          size="large"
+          class="w-12 h-12"
+          name="person-circle-outline"
+        ></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" color="light" shape="round">
+        <ion-icon slot="icon-only" class="w-8 h-8" name="menu"></ion-icon>
+      </ion-button>
+    </div>
+    <div class="p-5">
+      <h1 class="text-white text-base">
+        Olá, <span class="font-extrabold">Richard</span>
+      </h1>
+    </div>
+  </div>
+  <div class="bg-white flex flex-col gap-10 px-5 py-6">
+    <ion-input
+      class="bg-slate-100 input-style border-none rounded-t-lg rounded-b-sm"
+      type="text"
+      [formControl]="searchText"
+      placeholder="Buscar"
+    >
+      <ion-icon slot="start" name="search" aria-hidden="true"></ion-icon>
+    </ion-input>
+
+    <div class="grid grid-cols-3 gap-4 w-full">
+      <div
+        class="flex flex-col items-center justify-start"
+        *ngFor="let item of navigationItems"
+      >
+        <ion-button
+          fill="clear"
+          class="bg-slate-100 w-min rounded-full"
+          shape="round"
+        >
+          <ion-icon
+            [src]="'../../assets/menu/'+ item.icon +'.svg'"
+            class="w-10 h-10 m-4"
+            slot="icon-only"
+          ></ion-icon>
+        </ion-button>
+
+        <p class="text-center font-bold">{{item.name}}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>
