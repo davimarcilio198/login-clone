@@ -89,7 +89,7 @@ export class LoginPage implements OnInit {
           ) {
             resolve('resolve');
           } else {
-            reject('Usuário não autenticado');
+            reject('CPF e ou senha Incorretos.');
           }
         }, 2000);
       });
