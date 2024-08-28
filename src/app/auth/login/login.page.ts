@@ -59,6 +59,7 @@ export class LoginPage implements OnInit {
     });
   }
 
+  //seria legal separar essa função em algumas funções menores
   async onSignIn() {
     try {
       this.isFetching = true;
@@ -72,6 +73,8 @@ export class LoginPage implements OnInit {
       const document = this.formSignIn.get('document')?.value;
       const password = this.formSignIn.get('password')?.value;
 
+      //por exemplo, essa verificação, poderia ser uma função separada,
+      //como saveUserSession, handleRememberMe, persistUserData
       if (isRememberMe) {
         localStorage.setItem(
           '@login-clone:1.0.0/remember-me',
@@ -81,6 +84,8 @@ export class LoginPage implements OnInit {
         );
       }
 
+      //Essa parte tambem pode ser uma funcao unica,
+      //checkUserInfo, loginUser...
       await new Promise((resolve, reject) => {
         setTimeout(() => {
           if (
@@ -94,6 +99,9 @@ export class LoginPage implements OnInit {
         }, 2000);
       });
 
+      //podemos tambem colocar uma funcao ou até mesmo um servico para 
+      //tratar todas as chamadas de toast
+      //a criacao de um servico pode ser feita usando o comando "ionic generate service"
       const toast = await this.toastController.create({
         message: 'Login realizado',
         color: 'success',
