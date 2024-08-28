@@ -7,6 +7,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  //seria interassante atribuir um tipo a os menus de navegacao, como interface ou enum ou outra coisa 
   initialNavigationItems = [
     {
       href: '/',
