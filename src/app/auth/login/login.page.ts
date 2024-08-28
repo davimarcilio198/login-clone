@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
+import { ToastService } from 'src/app/services/toast.service';
 
 interface FormGroupProps {
   document: FormControl<string | null>;
@@ -27,10 +28,7 @@ export class LoginPage implements OnInit {
 
   submitted = false;
 
-  constructor(
-    private toastController: ToastController,
-    private router: Router
-  ) {}
+  constructor(private toastService: ToastService, private router: Router) {}
 
   onChangeShowPassword() {
     this.isShowPassword = !this.isShowPassword;
@@ -94,25 +92,17 @@ export class LoginPage implements OnInit {
         }, 2000);
       });
 
-      const toast = await this.toastController.create({
-        message: 'Login realizado',
-        color: 'success',
-        position: 'bottom',
-        duration: 1500,
+      await this.toastService.success({
+        message: 'Login realizado com sucesso',
       });
 
-      await toast.present();
       await this.router.navigate(['home']);
     } catch (error) {
       console.error(error);
 
-      const toast = await this.toastController.create({
+      await this.toastService.error({
         message: String(error),
-        color: 'danger',
-        position: 'bottom',
-        duration: 1500,
       });
-      await toast.present();
     } finally {
       this.isFetching = false;
     }
