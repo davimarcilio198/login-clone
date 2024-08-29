@@ -50,52 +50,39 @@ export class LoginPage implements OnInit {
     });
   }
 
-  persistUserData({ document }: { document: string }) {
-    const isRememberMe = this.formSignIn.get('isRememberMe')?.value;
-
-    if (isRememberMe) {
-      localStorage.setItem(
-        '@login-clone:1.0.0/remember-me',
-        JSON.stringify({
-          document,
-        })
-      );
-    }
-  }
-
-  async mockUserSignIn({
-    document,
-    password,
-  }: {
-    document: string;
-    password: string;
-  }) {
-    const userInDatabase = {
-      document: '11111111111',
-      password: '12345',
-    };
-    await new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (
-          document === userInDatabase.document &&
-          password === userInDatabase.password
-        ) {
-          resolve('resolve');
-        } else {
-          reject('CPF e ou senha Incorretos.');
-        }
-      }, 2000);
-    });
-  }
-
   async onSignIn() {
     try {
       this.isFetching = true;
 
-      const document = this.formSignIn.get('document')?.value ?? '';
-      const password = this.formSignIn.get('password')?.value ?? '';
-      // Call to API
-      await this.mockUserSignIn({ document, password });
+      const userInDatabase = {
+        document: '11111111111',
+        password: '12345',
+      };
+
+      const isRememberMe = this.formSignIn.get('isRememberMe')?.value;
+      const document = this.formSignIn.get('document')?.value;
+      const password = this.formSignIn.get('password')?.value;
+
+      if (isRememberMe) {
+        localStorage.setItem(
+          '@login-clone:1.0.0/remember-me',
+          JSON.stringify({
+            document,
+          })
+        );
+      }
+
+      await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (
+            document === userInDatabase.document &&
+            password === userInDatabase.password
+          ) {
+            return resolve('resolve');
+          }
+          return reject('CPF e ou senha Incorretos.');
+        }, 2000);
+      });
 
       await this.toastService.success({
         message: 'Login realizado com sucesso',
