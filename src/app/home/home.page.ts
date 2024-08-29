@@ -63,9 +63,6 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.searchText.valueChanges.subscribe((val) => {
-      console.log(val);
-      console.log('change');
-
       this.navigationItems = this.initialNavigationItems.filter((item) =>
         item.name.toLocaleLowerCase().includes((val ?? '').toLocaleLowerCase())
       );
