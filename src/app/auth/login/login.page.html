@@ -62,11 +62,7 @@
       <div class="w-full justify-end items-center flex px-2">
         <ion-checkbox formControlName="isRememberMe">Lembrar-me</ion-checkbox>
       </div>
-      <hr />
-      <div class="flex justify-between px-2">
-        <p class="text-sm font-semibold">Esqueci minha senha</p>
-        <p class="text-sm font-semibold">Registrar-se</p>
-      </div>
+
       <ion-button
         type="button"
         (click)="onSignIn()"
@@ -76,6 +72,12 @@
         <span class="py-2 font-semibold" *ngIf="!isFetching">Entrar</span>
         <ion-spinner *ngIf="isFetching" name="crescent"></ion-spinner>
       </ion-button>
+      <div class="flex flex-col items-center gap-2 px-2">
+        <p class="text-base font-semibold">Esqueci minha senha</p>
+        <p class="text-base font-semibold">
+          Não possui conta? <a class="underline" href="#">Registrar-se</a>
+        </p>
+      </div>
     </form>
   </div>
 </ion-content>
